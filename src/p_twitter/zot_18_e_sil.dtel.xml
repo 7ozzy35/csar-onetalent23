@@ -3,15 +3,13 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD04V>
-    <ROLLNAME>ZOT_18_E_TWEET_ID</ROLLNAME>
-    <DOMNAME>ZOT_18_D_TWEET_ID</DOMNAME>
+    <ROLLNAME>ZOT_18_E_SIL</ROLLNAME>
+    <DOMNAME>CHAR</DOMNAME>
     <HEADLEN>55</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
-    <ACTFLAG>I</ACTFLAG>
     <DTELMASTER>E</DTELMASTER>
-    <RESERVEDTE>JB</RESERVEDTE>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
@@ -20,11 +18,7 @@
    <DD04_TEXTS>
     <item>
      <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>tweetid</DDTEXT>
-     <REPTEXT>tweet id</REPTEXT>
-     <SCRTEXT_S>tweetid</SCRTEXT_S>
-     <SCRTEXT_M>tweet id</SCRTEXT_M>
-     <SCRTEXT_L>tweet id</SCRTEXT_L>
+     <DDTEXT>sil</DDTEXT>
     </item>
    </DD04_TEXTS>
   </asx:values>
