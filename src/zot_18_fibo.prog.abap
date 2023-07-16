@@ -6,11 +6,13 @@ PARAMETERS:
 
 DATA:
   lt_fibonacci TYPE TABLE OF i,   " Fibonacci sayılarını saklamak için tablo
+  lt_temp      TYPE TABLE OF i,   " Geçici tablo
+  lt_filtered  TYPE TABLE OF i,   " Filtrelenmiş Fibonacci sayıları için tablo
   lv_number    TYPE i,            " Kullanıcının girdiği maksimum sayı
   lv_iterations TYPE i,           " Kullanıcının girdiği kırılım sayısı
   lv_fibonacci TYPE i,            " Fibonacci sayısı hesaplamak için geçici değişken
-  lv_prev1     TYPE i VALUE 1,    " Fibonacci hesaplaması için bir önceki değeri tutar
-  lv_prev2     TYPE i VALUE 0.    " Fibonacci hesaplaması için iki önceki değeri tutar
+  lv_prev1     TYPE i VALUE 0,    " Fibonacci hesaplaması için bir önceki değeri tutar
+  lv_prev2     TYPE i VALUE 1.    " Fibonacci hesaplaması için iki önceki değeri tutar
 
 START-OF-SELECTION.
 
@@ -29,15 +31,23 @@ START-OF-SELECTION.
     EXIT.
   ENDIF.
 
-  " Fibonacci sayılarını hesaplayarak tabloya ekliyoruz
-  DO lv_iterations TIMES.
+  " Fibonacci sayılarını hesaplayarak geçici tabloya ekliyoruz
+  LOOP AT lt_temp INTO lv_prev1.
     lv_fibonacci = lv_prev1 + lv_prev2.
-    APPEND lv_fibonacci TO lt_fibonacci.
+    IF lv_fibonacci > lv_number.
+      EXIT.
+    ENDIF.
+    APPEND lv_fibonacci TO lt_temp.
     lv_prev2 = lv_prev1.
     lv_prev1 = lv_fibonacci.
-  ENDDO.
-
-  " Tablodaki Fibonacci sayılarını ekrana yazdırıyoruz
-  LOOP AT lt_fibonacci INTO lv_fibonacci.
-    WRITE lv_fibonacci.
   ENDLOOP.
+
+  " Geçici tablodaki Fibonacci sayılarını tamamlayıcı tabloya ekliyoruz
+  LOOP AT lt_temp INTO lv_fibonacci.
+    IF lv_fibonacci <= lv_number.
+      APPEND lv_fibonacci TO lt_filtered.
+    ENDIF.
+  ENDLOOP.
+
+  " Tamamlayıcı tablodaki Fibonacci sayılarını ana tabloya aktarıyoruz
+  lt_fibonacci = lt_filtered.
