@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <PROGDIR>
-    <NAME>ZOT_18_P_ZMN</NAME>
+    <NAME>ZOT_18_P_INTERNAL_TABLES</NAME>
     <DBAPL>S</DBAPL>
     <SUBC>1</SUBC>
     <FIXPT>X</FIXPT>
@@ -16,14 +16,8 @@
      <TEXTPOOL>
       <item>
        <ID>R</ID>
-       <ENTRY>zaman program</ENTRY>
-       <LENGTH>13</LENGTH>
-      </item>
-      <item>
-       <ID>S</ID>
-       <KEY>P_INDEX</KEY>
-       <ENTRY>index</ENTRY>
-       <LENGTH>13</LENGTH>
+       <ENTRY>internal tables</ENTRY>
+       <LENGTH>15</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

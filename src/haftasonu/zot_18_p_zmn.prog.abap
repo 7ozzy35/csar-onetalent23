@@ -17,22 +17,26 @@ DATA:
   lv_seconds TYPE i.
 
 PARAMETERS:
-  p_index TYPE sy-tabix DEFAULT 0.
+  p_index TYPE sy-tabix.
 
 START-OF-SELECTION.
-  " Tablodan verileri alın
+  " Tablodan verileri al
   SELECT * FROM zot_18_t_zmn INTO TABLE lt_table.
 
-  " İndeksi kontrol edin
-  IF p_index < 1 OR p_index > lines( lt_table ).
+  " İndeksi kontrol et ve p_index parametresini tablodan çek
+  IF p_index > lines( lt_table ) OR p_index < 1.
     WRITE: 'Geçersiz indeks.'.
     EXIT.
+  ELSE.
+    ls_row = lt_table[ p_index ].
   ENDIF.
 
-  " İndeksi alın
+  " Geri kalan kodu devam ettir...
+
+  " İndeksi al
   READ TABLE lt_table INDEX p_index INTO ls_row.
 
-  " Zaman farkını hesaplayın
+  " Zaman farkını hesapla
   IF ls_row-bittarih >= ls_row-bastarih.
     lv_diff = ls_row-bittarih - ls_row-bastarih.
   ELSE.
@@ -40,7 +44,7 @@ START-OF-SELECTION.
     EXIT.
   ENDIF.
 
-  " Zaman farkını yıl, ay, gün, saat, dakika ve saniye olarak hesaplayın
+  " Zaman farkını yıl, ay, gün, saat, dakika ve saniye olarak hesapla
   lv_years = lv_diff DIV 365.
   lv_diff = lv_diff MOD 365.
 
@@ -55,6 +59,6 @@ START-OF-SELECTION.
   lv_minutes = lv_diff DIV 60.
   lv_seconds = lv_diff MOD 60.
 
-  " Zaman farkını yazdırın
+  " Zaman farkını yazdır
   WRITE: 'Zaman farkı:', lv_years, 'yıl', lv_months, 'ay', lv_days, 'gün',
          lv_hours, 'saat', lv_minutes, 'dakika', lv_seconds, 'saniye'.
