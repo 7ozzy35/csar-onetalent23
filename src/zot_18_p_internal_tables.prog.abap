@@ -47,30 +47,32 @@ LOOP AT lt_material1 INTO ls_mater.
   ENDIF.
 ENDLOOP.
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"toplamı itaba ekleme"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-APPEND LINES OF lt_material1 TO lt_topmaterial.
-APPEND LINES OF lt_material TO lt_topmaterial.
+BREAK-POINT.
 
-LOOP AT lt_topmaterial INTO ls_mater.
-  COLLECT ls_mater INTO lt_mater.
-ENDLOOP.
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*"toplamı itaba ekleme"
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*APPEND LINES OF lt_material1 TO lt_topmaterial.
+*APPEND LINES OF lt_material TO lt_topmaterial.
+*
+*LOOP AT lt_topmaterial INTO ls_mater.
+*  COLLECT ls_mater INTO lt_mater.
+*ENDLOOP.
+*
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *Mengesi 10'dan küçük değerleri birleştirilmiş tablodan siliyoruz.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-DELETE lt_material1 WHERE menge < 10.
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*DELETE lt_material1 WHERE menge < 10.
+*
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *Menge alanı 10'dan fazla olanları küçükten büyüğe sortlama.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *SORT lt_topmaterial BY menge.
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *Collect sonrası menge büyükten küçüğe sortlama.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-SORT lt_mater BY menge DESCENDING.
-
-WRITE: / 'lt_topmaterial:'.
-WRITE: / 'lt_mater:'.
+*""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+*SORT lt_mater BY menge DESCENDING.
+*
+*WRITE: / 'lt_topmaterial:'.
+*WRITE: / 'lt_mater:'.
